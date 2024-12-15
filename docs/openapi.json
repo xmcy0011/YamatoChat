@@ -1,0 +1,108 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CoffeeChat API",
+        "description": "CoffeeChat API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://106.14.172.35:18080"
+        }
+    ],
+    "paths": {
+        "/v1/users": {
+            "post": {
+                "tags": ["用户管理"],
+                "summary": "注册用户",
+                "description": "注册用户",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_name": {
+                                        "type": "string",
+                                        "description": "用户名"
+                                    },
+                                    "user_nick_name": {
+                                        "type": "string",
+                                        "description": "用户昵称"
+                                    },
+                                    "user_password": {
+                                        "type": "string",
+                                        "description": "用户密码"
+                                    }
+                                },
+                                "required": ["user_name", "user_nick_name", "user_password"],
+                                "example": {
+                                    "user_name": "CoffeeChat",
+                                    "user_nick_name": "测试账号",
+                                    "user_password": "E10ADC3949BA59ABBE56E057F20F883E"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "成功",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "用户ID"
+                                        }
+                                    },
+                                    "required": ["id"],
+                                    "example": {
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "请求参数错误",
+                        "content": {
+                            "application/json": {
+                                "schema": { "$ref": "#/components/schemas/BadRequest" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BadRequest": {
+                "type": "object",
+                "properties": {
+                    "code": { 
+                        "type": "integer",
+                        "description": "错误码"
+                    },
+                    "cause": { 
+                        "type": "string",
+                        "description": "错误原因"
+                    },
+                    "msg": { 
+                        "type": "string",
+                        "description": "错误信息"
+                    }
+                },
+                "required": ["code", "cause", "msg"],
+                "example": {
+                    "code": 400,
+                    "cause": "Bad Request",
+                    "msg": "请求参数错误"
+                }
+            }
+        }
+    }
+}
