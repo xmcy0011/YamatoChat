@@ -1,0 +1,24 @@
+{
+    "type": "object",
+    "properties": {
+        "user_name": {
+            "type": "string",
+            "description": "用户名",
+            "minLength": 1,
+            "maxLength": 16
+        },
+        "nick_name": {
+            "type": "string",
+            "description": "用户昵称",
+            "minLength": 1,
+            "maxLength": 16
+        },
+        "password": {
+            "type": "string",
+            "description": "加密后的用户密码",
+            "minLength": 6,
+            "maxLength": 16
+        }
+    },
+    "required": ["user_name", "nick_name", "password"]
+}
